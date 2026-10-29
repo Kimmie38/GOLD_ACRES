@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@theme {
+  /* Palette sampled from public/logo.svg: amber-gold cap and "GOLD", steel-blue "ACRES". */
+  --color-ink: #13212c;
+  --color-ink-soft: #42586a;
+  --color-paper: #fbf8f3;
+  --color-cream: #f5ede1;
+  --color-line: #e8dccb;
+  --color-gold-300: #f3bb64;
+  --color-gold-400: #e1a358;
+  --color-gold-500: #bb8142;
+  --color-gold-700: #8f5a22;
+  --color-sky-100: #e6eff6;
+  --color-sky-300: #8db8d6;
+  --color-sky-500: #487ca3;
+  --color-sky-700: #2c5f85;
+
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+  }
+
+  ::selection {
+    @apply bg-gold-300 text-ink;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-gold-500;
+  }
+}
+
+@utility container-page {
+  @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+}
+
+@utility eyebrow {
+  @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-sky-700;
+
+  &::before {
+    content: "";
+    @apply h-px w-8 bg-gold-400;
+  }
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition duration-200;
+}
+
+@utility btn-gold {
+  @apply btn bg-linear-to-r from-gold-500 via-gold-400 to-gold-300 text-ink hover:brightness-110 shadow-[0_8px_24px_-8px_rgb(225_163_88/0.6)];
+}
+
+@utility btn-dark {
+  @apply btn bg-ink text-paper hover:bg-ink-soft;
+}
+
+/* The copper-to-amber sweep used on "GOLD" in the logo. */
+@utility text-gold-gradient {
+  @apply bg-linear-to-r from-gold-500 via-gold-400 to-gold-300 bg-clip-text text-transparent;
+}
+
+@utility btn-ghost {
+  @apply btn border border-current/30 hover:border-current hover:bg-white/10;
+}
+
+/* Scroll reveal (see components/Reveal.tsx) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .animate-float {
+    animation: none;
+  }
+}
