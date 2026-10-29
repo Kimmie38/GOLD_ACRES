@@ -38,7 +38,14 @@ export default function SiteHeader() {
       >
         <div className="container-page flex h-20 items-center justify-between">
           <Link href="/" className="flex items-center" aria-label={`${site.name} home`}>
-            <Image src="/brand/logo-lockup.png" alt="Gold Acres" width={374} height={167} priority className="h-14 w-auto" />
+            <Image
+              src={solid ? "/brand/logo-lockup.png" : "/brand/logo-lockup-on-dark.png"}
+              alt="Gold Acres"
+              width={374}
+              height={167}
+              priority
+              className="h-14 w-auto"
+            />
           </Link>
 
           <nav aria-label="Main" className="hidden md:block">

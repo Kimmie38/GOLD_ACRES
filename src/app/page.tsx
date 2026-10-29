@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BookOpen, GraduationCap, HeartHandshake, Users } from "lucide-react";
+import PhotoMarquee from "@/components/PhotoMarquee";
 import Reveal from "@/components/Reveal";
 import { CtaBand, Pillars, Testimonials } from "@/components/Sections";
 import { photos, site } from "@/lib/site";
@@ -186,17 +187,8 @@ export default function Home() {
             View the gallery <ArrowRight className="size-4" />
           </Link>
         </div>
-        <div className="container-page mt-14 grid auto-rows-[180px] grid-cols-2 gap-4 sm:auto-rows-[220px] md:grid-cols-4">
-          {[
-            { ...photos[2], span: "md:col-span-2 md:row-span-2" },
-            { ...photos[5], span: "row-span-2" },
-            { ...photos[3], span: "" },
-            { ...photos[9], span: "" },
-          ].map((p, i) => (
-            <Reveal key={p.src} delay={i * 100} className={`relative overflow-hidden rounded-2xl ${p.span}`}>
-              <Image src={p.src} alt={p.alt} fill quality={90} sizes="(min-width: 768px) 50vw, 50vw" className="object-cover transition duration-700 hover:scale-105" />
-            </Reveal>
-          ))}
+        <div className="mt-14">
+          <PhotoMarquee photos={photos} />
         </div>
       </section>
 

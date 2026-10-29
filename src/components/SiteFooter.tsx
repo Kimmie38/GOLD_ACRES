@@ -9,7 +9,7 @@ export default function SiteFooter() {
     <footer className="bg-ink text-paper/80">
       <div className="container-page grid gap-12 py-16 md:grid-cols-12">
         <div className="md:col-span-5">
-          <Image src="/brand/logo.png" alt={`Gold Acres, established in ${site.founded}`} width={374} height={198} className="h-24 w-auto" />
+          <Image src="/brand/logo-on-dark.png" alt={`Gold Acres, established in ${site.founded}`} width={374} height={198} className="h-24 w-auto" />
           <p className="mt-6 max-w-sm leading-relaxed">{site.tagline}</p>
           <SocialLinks className="mt-6 text-paper" />
         </div>

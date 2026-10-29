@@ -79,6 +79,20 @@
   @apply btn border border-current/30 hover:border-current hover:bg-white/10;
 }
 
+/* Sliding photo rows (see components/PhotoMarquee.tsx) */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee 70s linear infinite;
+}
+
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
 /* Scroll reveal (see components/Reveal.tsx) */
 .reveal {
   opacity: 0;
@@ -103,7 +117,13 @@
     transition: none;
   }
 
-  .animate-float {
+  .animate-float,
+  .marquee-track {
     animation: none;
+  }
+
+  /* No auto-sliding: let people scroll the row themselves instead. */
+  .marquee {
+    overflow-x: auto;
   }
 }
